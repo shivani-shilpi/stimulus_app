@@ -1,0 +1,17 @@
+<%= form_with model: [@project, @project.comments.build], data: { controller: 'remote', action: 'ajax:success->remote#append ajax:error->remote#replace' } do |f| %>
+    <% if f.object.errors.any? %>
+        <% f.object.errors.full_messages.each do |error| %>
+           <p><%= error %></p>
+        <% end %>
+    <% end %>
+
+    <div class="mb-3">
+        <%= f.label :content, class: "form-label" %>
+        <%= f.text_field :content, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.submit "save comment" %>
+    </div>
+<% end %>
+

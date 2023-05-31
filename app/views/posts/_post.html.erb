@@ -1,0 +1,64 @@
+<div class="container mt-3 mb-3">    
+    <% @student.posts.each do |post| %>
+       <div data-controller="slideshow" data-slideshow-index-value="1" class="mb-3">
+            <% post.images.each_with_index do |image, index| %>              
+                <% if post.images.attached? %>             
+                    <div data-slideshow-target="slide">   
+                        <%= image_tag(url_for(image), style: "width:100%; height:400px" ) %>
+                    </div>
+                <% end %> 
+            <% end %>
+            <% if post.images.present? %>
+                <button data-action="slideshow#previous"> ← </button>
+                <button data-action="slideshow#next"> → </button> 
+            <% end %>    
+        </div>   
+
+    <!--    <div data-controller="carousel" class="swiper-container" data-carousel-options-value='{"direction": "vertical"}'>
+            <% post.images.each_with_index do |image, index| %>  
+                <div class="swiper-wrapper">            
+                    <% if post.images.attached? %>             
+                        <div class="swiper-slide">   
+                            <%= image_tag(url_for(image), style: "width:100%; height:400px" ) %>
+                        </div>
+                    <% end %>
+                </div> 
+            <% end %>
+        </div>  -->
+           
+    <!-- <div class="relative" data-controller="carousel">
+            <% post.images.each_with_index do |image, idx| %>
+                <% if post.images.attached? %> 
+                    <div data-carousel-target="image" class="<%= idx > 0 ? "hidden" : nil %>">
+                        <%= image_tag(url_for(image), style: "width:100%; height:100px" ) %>
+                    </div>
+                <% end %>
+            <% end %>
+            <div class="absolute left-0 bottom-0 top-0 flex items-center">
+                <button data-action="carousel#previous" type="button" class="rounded-full bg-gray-300"> << </button>
+            </div>
+            <div class="absolute right-0 bottom-0 top-0 flex items-center">
+                <button data-action="carousel#next" type="button" class="rounded-full bg-gray-300"> >> </button>
+            </div>
+        </div>  -->
+
+        <div class="mb-3">
+           <h3><%= post.title %></h3>
+        </div>
+
+        <div class="mb-3" data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
+            <div class="my-content" data-read-more-target="content">
+               <%= post.content %>
+            </div> 
+            <% if post.content.present? %>
+              <button data-action="read-more#toggle" class="btnl">Read more</button> 
+            <% end %>   
+        </div>
+
+        <div class="mb-3">
+            <% if post.title.present? %> 
+                <%= link_to "Destroy", "/students/#{post.student_id}/posts/#{post.id}", method: :delete, data: {confirm: "Are you sure"}, class: "btn btn-outline-danger" %>
+            <% end %>
+        </div>
+    <% end %>
+</div>    

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>StimulusApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <%= javascript_importmap_tags %>
+    <base href="/"> 
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key={your_key_here}&libraries=places&callback=initAutocomplete"
+    async=""
+    defer=""
+  ></script>
+  </head>
+
+  <body>
+  <div class="container mt-3">
+    <%= yield %>
+  </div>
+  </body>
+</html>

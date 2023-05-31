@@ -1,0 +1,19 @@
+
+<% @project.comments.each do |comment| %>
+    <div class="cmt mb-3">
+       <%= comment.content %>
+    </div>   
+<% end %>    
+
+<!-- We can append, prepend and replace data by using this turbo stimulus -------->
+<div class="mb-3">
+    <%#= link_to 'Click me to append content', project_comment_path(@project), remote: true, data: { controller: 'remote', action: 'ajax:success->remote#append' }, class: "btn btn-outline-secondary" %>
+</div>
+
+<div class="mb-3">
+    <%#= link_to 'Click me to prepend content', project_comment_path(@project), remote: true, data: { controller: 'remote', action: 'ajax:success->remote#prepend' }, class: "btn btn-outline-info" %>
+</div>
+
+<div class="mb-3">
+    <%#= link_to 'Click me to replace content', project_comment_path(@project), remote: true, data: { controller: 'remote', action: 'ajax:success->remote#replace' }, class: "btn btn-outline-success" %>
+</div>
